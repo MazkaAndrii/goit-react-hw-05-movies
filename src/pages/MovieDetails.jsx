@@ -1,5 +1,5 @@
 import { useParams, Outlet, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { getMovieById } from '../services/api';
 import MovieCard from 'components/MovieCard/MovieCard';
 import {
@@ -42,7 +42,9 @@ const DetailedMoviePage = () => {
           Reviews
         </LinkItemReview>
       </LinkContainer>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </DetailsContainer>
   );
 };
